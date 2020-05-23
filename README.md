@@ -30,3 +30,8 @@
     - Pandas
     - nltk
     - sklearn
+    
+
+5. **Files**
+    - Recommendation system
+    - Text_Normalization_Function (from WUSTL-B69 DAT 562)
