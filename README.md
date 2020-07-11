@@ -50,12 +50,12 @@
 2. **Import dataset**  
 Import dataset and reset index by using `df_comment = df_comment.rename(columns={"Unnamed: 0": "Number"}).set_index("Number")`.     
 Keep only English comments.  
-  ```python
-     for index, row in df_comment.iterrows():
-            l=row['Comment']
-            if type(l) is not str:
-                df_comment.drop(index, axis=0, inplace=True)
-  ```
+    ```python
+       for index, row in df_comment.iterrows():
+              l=row['Comment']
+              if type(l) is not str:
+                  df_comment.drop(index, axis=0, inplace=True)
+    ```
 3. **Lexicon-based sentiment analysis (VADER lexicon)**  
     A. Find the true sentiment polarity according to user score: user score > 7.6 is positive.  
     ```python
