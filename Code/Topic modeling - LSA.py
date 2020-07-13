@@ -3,14 +3,14 @@
 
 # # Topic modeling - LSA
 
-# In[136]:
+# In[1]:
 
 
 from sklearn.decomposition import TruncatedSVD
 from sklearn.pipeline import Pipeline
 
 
-# In[137]:
+# In[2]:
 
 
 def display_topics(model, feature_names, no_top_words, topic_names=None):
@@ -23,24 +23,23 @@ def display_topics(model, feature_names, no_top_words, topic_names=None):
                         for i in topic.argsort()[:-no_top_words - 1:-1]]))
 
 
-# In[138]:
+# In[3]:
 
 
 n_comp = 35
 no_top_words = 40
 
 lsa = TruncatedSVD(n_components=n_comp)
-
 lsa_tfidf_data = lsa.fit_transform(TF_IDF_matrix)
 
 
-# In[139]:
+# In[4]:
 
 
 display_topics(lsa,TF_IDF_matrix_names,no_top_words)
 
 
-# In[ ]:
+# In[5]:
 
 
 # Display topics for LDA on TF-IDF Vectorizer (as comparison)
