@@ -3,14 +3,14 @@
 
 # ## Lexicon-Based Sentiment Analysis (VADER Lexicon)
 
-# In[4]:
+# In[1]:
 
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
 
-# In[106]:
+# In[2]:
 
 
 # Binary Actual Userscore Polarity
@@ -26,7 +26,7 @@ df_comment["Bin Actual Userscore Polarity"]=bin_Actual
 df_comment.reset_index()
 
 
-# In[107]:
+# In[3]:
 
 
 #VADER
@@ -39,7 +39,7 @@ for comment in df_comment['Comment']:
 df_comment['Vader Score'] = Vader_scores
 
 
-# In[108]:
+# In[4]:
 
 
 # given the vader score, get polarity
@@ -52,7 +52,7 @@ def analyze_sentiment_vader_lexicon(review, threshold = 0.1, verbose = False):
     return binary_sentiment,scores['compound']  
 
 
-# In[109]:
+# In[5]:
 
 
 VADER_polarity_test = [analyze_sentiment_vader_lexicon(comment, threshold=0.2) for comment in df_comment["Comment"]]
@@ -64,7 +64,7 @@ print('Accuracy Rate:', np.round(metrics.accuracy_score(df_comment["Bin Actual U
 
 # ## Find-tune the best threshold parameter
 
-# In[111]:
+# In[6]:
 
 
 def try_threshold_for_accuracy(sentiment_scores, threshold_for_pos):
@@ -73,7 +73,7 @@ def try_threshold_for_accuracy(sentiment_scores, threshold_for_pos):
     return(accuracy) 
 
 
-# In[118]:
+# In[7]:
 
 
 # show prediction accuracy as a table
@@ -84,7 +84,7 @@ pd.crosstab(pd.Series(df_comment["Bin Actual Userscore Polarity"]),
             margins = True)
 
 
-# In[115]:
+# In[8]:
 
 
 # plot the threshold and accuracy rate
@@ -99,7 +99,7 @@ plt.title("Accuracy Rate of Sentiment Polarity Prediction \n as a Function of Th
 plt.show()
 
 
-# In[116]:
+# In[9]:
 
 
 best_thresholds = thresholds[accuracy_rates.index(max(accuracy_rates))] 
@@ -109,7 +109,7 @@ VADER_polarity_test_df = pd.DataFrame(VADER_polarity_test, columns = ['VADER Pol
 df_comment["VADER Polarity"] = VADER_polarity_test_df['VADER Polarity']
 
 
-# In[125]:
+# In[10]:
 
 
 df_comment["VADER Polarity"]=df_comment["VADER Polarity"].apply(lambda x: 1 if x is "positive" else 0)
