@@ -3,7 +3,7 @@
 
 # # Recommendation System - K-nearest neighbors (KNN)
 
-# In[140]:
+# In[1]:
 
 
 # import libraries
@@ -13,7 +13,7 @@ from sklearn import metrics
 from sklearn.model_selection import KFold
 
 
-# In[156]:
+# In[2]:
 
 
 def get_recommendations(first_article, model, vectorizer, X,y):
@@ -23,7 +23,7 @@ def get_recommendations(first_article, model, vectorizer, X,y):
     return results[1][0]
 
 
-# In[160]:
+# In[3]:
 
 
 X=lsa_tfidf_data
@@ -33,7 +33,7 @@ result = get_recommendations(inputs, lsa, vectorizer_TF_IDF, X,y)
 result
 
 
-# In[161]:
+# In[4]:
 
 
 # show 10 related video games with sentiment review score
@@ -41,10 +41,5 @@ for r in result:
     game = df_comment_group.Title[r]
     vader_polarity = df_comment_group["VADER Polarity"][r]
     print(f'Recommend games name is {game}. \nThe sentiment score of is {round(vader_polarity,2)}.')
-
-
-# In[ ]:
-
-
 
 
